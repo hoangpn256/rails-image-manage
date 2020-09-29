@@ -17,5 +17,9 @@ class Message
     def logout
       'Logout success!'
     end
+
+    def pagy_overflow
+      'Paginate Overflow'
+    end
   end
 end

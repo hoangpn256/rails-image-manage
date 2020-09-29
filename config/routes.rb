@@ -9,5 +9,9 @@ Rails.application.routes.draw do
     get '/current', to: 'sessions#show'
   end
   root to: 'application#index'
+
+  namespace :client, path: '/' do
+    resources :images
+  end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

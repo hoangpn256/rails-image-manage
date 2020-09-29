@@ -1,9 +1,10 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
-  before_action :authenticate_user!, only: :index
+  # before_action :authenticate_user!, only: :index
   include Response
   include ExceptionHandler
+  include Pagy::Backend
 
   def index
     # success_response({}, :unprocessable_entity)
