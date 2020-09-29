@@ -6,11 +6,9 @@ class SessionsController < Devise::SessionsController
 
   def create
     user = User.find_for_authentication(email: params[:email])
-    if user.valid_password?(params[:password])
-      render json: {status: true, token: user.token_generate, resource: user}
-    else
-      render json: {status: false, message: 'invalid username/password'}
-    end
+    raise ExceptionHandler::InvalidAccountError unless user.valid_password?(params[:password])
+
+    success_response({ token: user.token_generate, user: user })
   end
 
   def show
@@ -20,7 +18,7 @@ class SessionsController < Devise::SessionsController
   private
 
   def respond_to_on_destroy
-    render json: { status: true, message: 'Logout' }, status: 200
+    success_response(message: Message.logout)
   end
 
   def current_token
