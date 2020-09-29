@@ -7,7 +7,7 @@ module Client
 
     def index
       pagy, @images_pagy = pagy(@images, page: params[:page], items: ApplicationHelper::PER_PAGE_20)
-      images = @images.map { |image| ImageSerializer.new(image) }
+      images = @images_pagy.map { |image| ImageSerializer.new(image) }
       pagy_response(pagy, images: images)
     end
 
