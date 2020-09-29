@@ -2,6 +2,7 @@
 
 class SessionsController < Devise::SessionsController
   skip_before_action :verify_authenticity_token
+  before_action :authenticate_user!, only: :show
   respond_to :json
 
   def create
@@ -12,7 +13,7 @@ class SessionsController < Devise::SessionsController
   end
 
   def show
-    render json: current_user
+    success_response(UserSerializer.new(current_user))
   end
 
   private
