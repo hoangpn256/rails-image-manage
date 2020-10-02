@@ -9,7 +9,7 @@ class SessionsController < Devise::SessionsController
     user = User.find_for_authentication(email: params[:email])
     raise ExceptionHandler::InvalidAccountError unless user.valid_password?(params[:password])
 
-    success_response({ token: user.token_generate, user: user })
+    success_response({ token: user.token_generate, profile: user })
   end
 
   def show

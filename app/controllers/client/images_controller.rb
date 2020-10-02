@@ -2,6 +2,7 @@
 
 module Client
   class ImagesController < ApplicationController
+    before_action :authenticate_user!, only: :show
     before_action :set_images
     before_action :set_image, only: :show
 
@@ -12,7 +13,7 @@ module Client
     end
 
     def show
-      success_response(ImageSerializer.new(@image, { detail: true }))
+      success_response(ImageSerializer.new(@image))
     end
 
     private

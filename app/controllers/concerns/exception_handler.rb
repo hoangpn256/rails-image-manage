@@ -19,7 +19,7 @@ module ExceptionHandler
   private
 
   def invalid_account
-    error_response({ message: Message.invalid_account, code: ErrorCode::INVALID_ACCOUNT }, :not_found)
+    error_response({ message: Message.invalid_account, code: ErrorCode::INVALID_ACCOUNT })
   end
 
   def record_not_found(error)
